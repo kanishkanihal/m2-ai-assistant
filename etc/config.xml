@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <kanishka_ai>
+            <general>
+                <ollama_url>http://ollama:11434</ollama_url>
+                <es_index>magento2_product_1</es_index>
+                <chat_model>llama3.2</chat_model>
+                <top_k>5</top_k>
+                <keyword_timeout>30</keyword_timeout>
+                <chat_timeout>180</chat_timeout>
+            </general>
+            <prompts>
+                <system_prompt>You are a friendly and helpful shopping assistant for our online store. Your job is to help customers find products they are looking for.
+
+Rules:
+- Only recommend products from the list provided below. Do NOT invent products.
+- If no products match the customer's question, politely say you couldn't find a match and suggest they browse the catalog.
+- Keep responses concise and conversational (2-4 sentences).
+- Mention product names naturally in your response.
+- Do not mention SKUs, embeddings, vectors, or any technical details.</system_prompt>
+                <keyword_prompt>Extract product search keywords and price range from the user query. Price direction rules (strictly follow): "under/below/less than/cheaper than $X" means max_price=X and min_price=null. "over/above/more than/at least $X" means min_price=X and max_price=null. "between $X and $Y" means min_price=X and max_price=Y. Keywords must contain ONLY product-related words — remove all price words (under, over, below, above, between, $, numbers, cheap, expensive). Return ONLY valid JSON, no explanation: {"keywords": "...", "min_price": null, "max_price": null}. Examples: "blue bag under $50" -> {"keywords": "blue bag", "min_price": null, "max_price": 50} | "jacket between $30 and $80" -> {"keywords": "jacket", "min_price": 30, "max_price": 80} | "red top over $20" -> {"keywords": "red top", "min_price": 20, "max_price": null} | "red top" -> {"keywords": "red top", "min_price": null, "max_price": null}</keyword_prompt>
+            </prompts>
+        </kanishka_ai>
+    </default>
+</config>

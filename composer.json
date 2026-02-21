@@ -1,0 +1,24 @@
+{
+    "name": "kanishka/magento2-ai-assistant",
+    "description": "AI-powered shopping assistant for Magento 2 using local Ollama LLM and Elasticsearch",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kanishka"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "magento/framework": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Kanishka\\AiAssistant\\": ""
+        }
+    }
+}

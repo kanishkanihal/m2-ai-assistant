@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="kanishka" translate="label" sortOrder="200">
+            <label>Kanishka</label>
+        </tab>
+        <section id="kanishka_ai" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>AI Assistant</label>
+            <tab>kanishka</tab>
+            <resource>Kanishka_AiAssistant::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Settings</label>
+                <field id="ollama_url" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Ollama URL</label>
+                    <comment>Base URL for the Ollama API (e.g. http://ollama:11434)</comment>
+                </field>
+                <field id="es_index" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch Index</label>
+                    <comment>Magento product index alias (e.g. magento2_product_1)</comment>
+                </field>
+                <field id="chat_model" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Chat Model</label>
+                    <comment>Ollama model name used for chat responses (e.g. llama3.2)</comment>
+                </field>
+                <field id="top_k" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Max Results (Top K)</label>
+                    <comment>Number of products to retrieve from Elasticsearch (default: 5)</comment>
+                </field>
+                <field id="keyword_timeout" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Keyword Extraction Timeout (s)</label>
+                    <comment>Max seconds to wait for keyword extraction — increase for larger models (default: 30)</comment>
+                </field>
+                <field id="chat_timeout" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Chat Response Timeout (s)</label>
+                    <comment>Max seconds to wait for chat response generation — increase for larger models (default: 180)</comment>
+                </field>
+            </group>
+            <group id="prompts" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>AI Prompts</label>
+                <field id="system_prompt" translate="label comment" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>System Prompt</label>
+                    <comment>Instructions given to the AI for generating chat responses</comment>
+                </field>
+                <field id="keyword_prompt" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Keyword Extraction Prompt</label>
+                    <comment>Instructions given to the AI for extracting search keywords from customer queries</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
