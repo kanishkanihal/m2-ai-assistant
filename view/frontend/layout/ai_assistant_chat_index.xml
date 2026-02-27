@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+      layout="1column">
+    <head>
+        <title>Shop with AI</title>
+        <css src="Kanishka_AiAssistant::css/ai-chat.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Kanishka\AiAssistant\Block\Chat\Index"
+                   name="ai.assistant.chat"
+                   template="Kanishka_AiAssistant::chat/index.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

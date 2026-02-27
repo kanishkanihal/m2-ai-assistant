@@ -4,6 +4,10 @@
     <module name="Kanishka_AiAssistant" setup_version="1.0.0">
         <sequence>
             <module name="Magento_Catalog"/>
+            <module name="Magento_Customer"/>
+            <module name="Magento_Theme"/>
+            <module name="Magento_Checkout"/>
+            <module name="Magento_ConfigurableProduct"/>
         </sequence>
     </module>
 </config>

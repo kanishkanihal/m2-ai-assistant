@@ -1,0 +1,396 @@
+/* ==========================================================================
+   AI Shopping Assistant — Chat Page Styles
+   ========================================================================== */
+
+/* --- Page layout --------------------------------------------------------- */
+
+.ai-chat-page {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 220px); /* subtract approx header + footer height */
+    min-height: 500px;
+    margin: 0 -15px; /* bleed to page edges if theme has padding */
+}
+
+/* --- Messages area ------------------------------------------------------- */
+
+.ai-chat-messages {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #f9f9f9;
+}
+
+/* Individual message bubbles */
+.ai-chat-msg {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    max-width: 80%;
+    animation: ai-fade-in 0.2s ease;
+}
+
+.ai-chat-msg--bot {
+    align-self: flex-start;
+}
+
+.ai-chat-msg--user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.ai-chat-bubble {
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.ai-chat-msg--bot .ai-chat-bubble {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-bottom-left-radius: 4px;
+    color: #333;
+}
+
+.ai-chat-msg--user .ai-chat-bubble {
+    background: #1979c3;
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+/* Typing indicator */
+.ai-chat-typing .ai-chat-bubble {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px;
+}
+
+.ai-chat-typing .ai-chat-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #999;
+    animation: ai-bounce 1.2s infinite ease-in-out;
+}
+
+.ai-chat-typing .ai-chat-dot:nth-child(2) { animation-delay: 0.2s; }
+.ai-chat-typing .ai-chat-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* --- Product cards ------------------------------------------------------- */
+
+.ai-chat-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.ai-product-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    width: 150px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.1s;
+    overflow: hidden;
+    text-align: center;
+}
+
+.ai-product-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.ai-product-card__image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.ai-product-card__image--placeholder {
+    width: 100%;
+    height: 120px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbb;
+    font-size: 30px;
+}
+
+.ai-product-card__name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    padding: 8px 8px 4px;
+    line-height: 1.3;
+}
+
+.ai-product-card__price {
+    font-size: 13px;
+    color: #1979c3;
+    padding: 0 8px 10px;
+    font-weight: 700;
+}
+
+/* --- Option selector (configurable products) ---------------------------- */
+
+.ai-options-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.ai-option-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.ai-option-group .ai-option-choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.ai-option-btn {
+    padding: 5px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.ai-option-btn.selected,
+.ai-option-btn:hover {
+    border-color: #1979c3;
+    background: #e8f2fb;
+    color: #1979c3;
+}
+
+.ai-options-confirm {
+    margin-top: 4px;
+    align-self: flex-start;
+}
+
+/* --- Radio choice UI (continue/checkout, address selection) ------------- */
+
+.ai-chat-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.ai-choice-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fff;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.ai-choice-label:hover {
+    border-color: #1979c3;
+    background: #f0f7ff;
+}
+
+.ai-choice-label input[type="radio"] {
+    display: none;
+}
+
+.ai-choice-label:has(input[type="radio"]:checked) {
+    border-color: #1979c3;
+    background: #e8f2fb;
+}
+
+.ai-choices-confirm {
+    margin-top: 4px;
+    align-self: flex-start;
+}
+
+/* --- Cart item list -------------------------------------------------------- */
+
+.ai-cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+    min-width: 240px;
+}
+
+.ai-cart-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fff;
+    transition: opacity 0.2s;
+}
+
+.ai-cart-item--removing {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.ai-cart-item__img {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+    border: 1px solid #e0e0e0;
+}
+
+.ai-cart-item__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.ai-cart-item__name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.ai-cart-item__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.ai-cart-item__option {
+    font-size: 11px;
+    color: #555;
+    background: #f0f0f0;
+    border-radius: 3px;
+    padding: 1px 6px;
+}
+
+.ai-cart-item__meta {
+    font-size: 12px;
+    color: #666;
+    white-space: nowrap;
+}
+
+.ai-cart-item__remove {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #999;
+    padding: 2px 4px;
+    line-height: 1;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+}
+
+.ai-cart-item__remove:hover {
+    color: #e02b27;
+    background: #fdf0f0;
+}
+
+/* --- Input area ---------------------------------------------------------- */
+
+.ai-chat-input-area {
+    flex-shrink: 0;
+    background: #ffffff;
+    border-top: 1px solid #ddd;
+    padding: 12px 16px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ai-chat-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ai-chat-input {
+    flex: 1 1 auto;
+    resize: none;
+    min-height: 44px;
+    max-height: 140px;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 22px;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: inherit;
+    overflow-y: auto;
+    transition: border-color 0.2s;
+}
+
+.ai-chat-input:focus {
+    border-color: #1979c3;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(25, 121, 195, 0.15);
+}
+
+.ai-chat-send-btn {
+    flex-shrink: 0;
+    height: 44px;
+    padding: 0 20px;
+    border-radius: 22px;
+    white-space: nowrap;
+}
+
+.ai-chat-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- Utility / animations ----------------------------------------------- */
+
+@keyframes ai-fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ai-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30%            { transform: translateY(-6px); }
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .ai-chat-page {
+        height: calc(100vh - 160px);
+        margin: 0;
+    }
+
+    .ai-chat-msg {
+        max-width: 95%;
+    }
+
+    .ai-product-card {
+        width: 130px;
+    }
+}

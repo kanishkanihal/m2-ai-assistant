@@ -1,0 +1,53 @@
+<?php
+/**
+ * AI Shopping Assistant — Chat page template
+ *
+ * @var \Kanishka\AiAssistant\Block\Chat\Index $block
+ */
+$customerName = $block->escapeHtml($block->getCustomerFirstname());
+$formKey      = $block->escapeHtml($block->getFormKey());
+?>
+<div class="ai-chat-page"
+     id="ai-chat-page"
+     data-customer-name="<?= $customerName ?>"
+     data-form-key="<?= $formKey ?>"
+     data-chat-url="<?= $block->escapeUrl($block->getRestChatUrl()) ?>"
+     data-product-info-url="<?= $block->escapeUrl($block->getUrl('ai-assistant/ajax/productinfo')) ?>"
+     data-product-options-url="<?= $block->escapeUrl($block->getUrl('ai-assistant/ajax/productoptions')) ?>"
+     data-add-to-cart-url="<?= $block->escapeUrl($block->getUrl('ai-assistant/ajax/addtocart')) ?>"
+     data-addresses-url="<?= $block->escapeUrl($block->getUrl('ai-assistant/ajax/addresses')) ?>"
+     data-set-address-url="<?= $block->escapeUrl($block->getUrl('ai-assistant/ajax/setaddress')) ?>"
+     data-set-shipping-method-url="<?= $block->escapeUrl($block->getUrl('ai-assistant/ajax/setshippingmethod')) ?>"
+     data-remove-item-url="<?= $block->escapeUrl($block->getUrl('checkout/sidebar/removeItem')) ?>"
+     data-checkout-url="<?= $block->escapeUrl($block->getUrl('checkout')) ?>">
+
+    <div class="ai-chat-messages" id="ai-chat-messages">
+        <!-- Messages injected by ai-chat.js -->
+    </div>
+
+    <div class="ai-chat-input-area">
+        <form class="ai-chat-form" id="ai-chat-form" novalidate>
+            <textarea
+                id="ai-chat-input"
+                class="ai-chat-input"
+                placeholder="<?= $block->escapeHtmlAttr(__('Ask me anything… e.g. "red yoga bags under $50"')) ?>"
+                rows="1"
+                maxlength="500"
+                aria-label="<?= $block->escapeHtmlAttr(__('Chat message')) ?>"></textarea>
+            <button type="submit"
+                    class="ai-chat-send-btn action primary"
+                    id="ai-chat-send"
+                    aria-label="<?= $block->escapeHtmlAttr(__('Send message')) ?>">
+                <span><?= $block->escapeHtml(__('Send')) ?></span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#ai-chat-page": {
+        "Kanishka_AiAssistant/js/ai-chat": {}
+    }
+}
+</script>
