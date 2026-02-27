@@ -2,6 +2,10 @@
 
 AI-powered shopping assistant for Magento 2. Uses Elasticsearch for accurate product search and locally-hosted Ollama to generate natural language responses. No customer data leaves the server.
 
+## Demo
+
+[![AI Shopping Assistant Demo](https://img.youtube.com/vi/KkqDJW8Dxg0/maxresdefault.jpg)](https://www.youtube.com/watch?v=KkqDJW8Dxg0)
+
 ## Architecture
 
 ```
